@@ -5,6 +5,20 @@
 # The greatest common divisor of two numbers is the largest positive integer
 #   that evenly divides both numbers.
 
+# Solution:
+#   using Ecluid's GCD algorithm
+#       for a given two number m & n where m > n, the GCD(m, n) = GCD(n, m%n)  = n when m%n == 0)
+#           GCD(m, n) == GCD(m-n, n) (assuming m-n > n) or GCD(n, m-n) (assuming m-n < n) or n if (m == n)
+#                   say GCD(m, n) is g i.e. g.p = m and g.q = n where p > q
+#                   (m-n) = (g.p - g.q) = g.(p-q) = g.r i.e. GCD of m, n & m-n is g.
+#                   hence, GCD(m, n) == GCD(m-n, n) == GCD(m-n, m)
+#          GCD(m, n) == GCD(m-2n, n) (assuming m-2n > n) or GCD(n, m-2n) (assuming m-2n < n) or n if (m == 2n)
+#         GCD(m, n) == GCD(m-xn, n) (assuming m-xn > n) or GCD(n, m-xn) (assuming m-xn < n) or n if (m == xn)
+#        max value of x is the highest quotient which get n closer to m & m-xn is the remainder i.e m%n
+#        so, GCD(m-xn, n) == GCD(n, m%n)
+#    for example m = 16 & n = 36
+#       GCD(36, 16) == GCD(16, 36%16) == GCD(16, 4) == GCD(4, 16%4) == GCD(4, 0) == 4
+#
 def find_gcd_by_number_theory(num1, num2):
     small_number = min([num1, num2])
     big_number = max([num1, num2])
