@@ -36,7 +36,7 @@
 #     Proof:
 #         Case I:
 #         Say,  GCD(m, n) = g, where m > n
-# 	    => m = g x p , n = g x q
+# 	      => m = g x p , n = g x q
 #         => m-n = g (p - q) = g x r
 #         => m-2n = g (p - 2q) = g x s  (where m > 2n)
 #         => GCD(m-xn, n) = g, where (m-xn) > n
@@ -50,6 +50,7 @@
 #         => GCD(m, n) = GCD(n, m%n)
 #           example m = 16 & n = 36
 #           GCD(36, 16) == GCD(16, 36%16) == GCD(16, 4) == GCD(4, 16%4) == GCD(4, 0) == 4
+#               there no other number  > 4 and <= 16 which divides 36 and 16.
 #
 #         Case II:
 #             since m == n, the greatest number it can
