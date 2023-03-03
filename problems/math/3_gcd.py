@@ -6,18 +6,61 @@
 #   that evenly divides both numbers.
 
 # Solution:
-#   using Ecluid's GCD algorithm
-#       for a given two number m & n where m > n, the GCD(m, n) = GCD(n, m%n)  = n when m%n == 0)
-#           GCD(m, n) == GCD(m-n, n) (assuming m-n > n) or GCD(n, m-n) (assuming m-n < n) or n if (m == n)
-#                   say GCD(m, n) is g i.e. g.p = m and g.q = n where p > q
-#                   (m-n) = (g.p - g.q) = g.(p-q) = g.r i.e. GCD of m, n & m-n is g.
-#                   hence, GCD(m, n) == GCD(m-n, n) == GCD(m-n, m)
-#          GCD(m, n) == GCD(m-2n, n) (assuming m-2n > n) or GCD(n, m-2n) (assuming m-2n < n) or n if (m == 2n)
-#         GCD(m, n) == GCD(m-xn, n) (assuming m-xn > n) or GCD(n, m-xn) (assuming m-xn < n) or n if (m == xn)
-#        max value of x is the highest quotient which get n closer to m & m-xn is the remainder i.e m%n
-#        so, GCD(m-xn, n) == GCD(n, m%n)
-#    for example m = 16 & n = 36
-#       GCD(36, 16) == GCD(16, 36%16) == GCD(16, 4) == GCD(4, 16%4) == GCD(4, 0) == 4
+#   GCD(Greatest Common Divisor) for a given two numbers is a
+#   number when it divides them it leaves them as co-prime
+#   i.e. there are no other common factors between them other
+#   than 1.
+#
+#   Examples:
+#   GCD(10, 5) is 5 as 10/5=5 and 5/5=1 and there is no
+#   common factor between 5 and 1 other than 1.
+#
+#   GCD(10, 8) is 2 as 10/2=5 and 8/2=4 and there is no common
+#   factor between 5 and 4 other than 1.
+#
+#   How do we compute it for a given numbers m, n where m >= n?
+#     We can try all possibilities from n to 1 and check
+#     which divides both m and n. This is an exhaustive
+#     approach with time complexity of O(n). Can we do
+#     better ?
+#
+#     There is Euclid's theorem to find the GCD and it takes
+#     logx(n) time. We can leverage that.
+#     He states,
+#
+#     Theorem:
+#         I.   GCD(m, n) = GCD(n, m%n) where m > n
+#         II.  GCD(m, n) = n where m == n
+#         III. GCD(m, n) = m where m >= n and n == 0
+#
+#     Proof:
+#         Case I:
+#         Say,  GCD(m, n) = g, where m > n
+# 	    => m = g x p , n = g x q
+#         => m-n = g (p - q) = g x r
+#         => m-2n = g (p - 2q) = g x s  (where m > 2n)
+#         => GCD(m-xn, n) = g, where (m-xn) > n
+#         => GCD(n, m-x`n), where (m-x`n) < n
+#
+#         m > n => m = x`n + y (x` is quotient and y is
+#             remainder. y < n)
+#         => m-x`n = y => y = m-x`n < n
+#         => the lowest value of m-x`n is remainder of m, n
+#         => GCD(n, m-x`n) = GCD(n, m%n)
+#         => GCD(m, n) = GCD(n, m%n)
+#           example m = 16 & n = 36
+#           GCD(36, 16) == GCD(16, 36%16) == GCD(16, 4) == GCD(4, 16%4) == GCD(4, 0) == 4
+#
+#         Case II:
+#             since m == n, the greatest number it can
+#             divide is itself. so m is the GCD
+#             => GCD(m, n) = m, where m == n
+#
+#         Case III:
+#             Given n is 0 and m > 0. any number when
+#             divides 0 is 0. the greatest number it can
+#             divide 0 is maximum of m & 0 => m i.e. 0/m = 0
+#             => GCD(m, n) = m, where n == 0
 #
 def find_gcd_by_number_theory(num1, num2):
     small_number = min([num1, num2])
