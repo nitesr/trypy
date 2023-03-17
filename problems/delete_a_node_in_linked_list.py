@@ -20,6 +20,7 @@ class LinkedListNode:
         self.value = value
         self.next = None
 """
+import traceback
 import unittest
 
 
@@ -75,16 +76,19 @@ class Testcase(unittest.TestCase):
         try:
             self.assertEqual(10, output.value, "example1: head should be 10")
             self.assertEqual(30, output.next.value, "example1: pos 2 should be 30")
-        except:
+        except Exception as e:
+            traceback.print_exception(e)
             self.assertTrue(False, "not expected!")
-    def test_begining(self):
+
+    def test_beginning(self):
         head = build_linked_list([10, 20, 30, 40, 50])
         position = 1
         output = delete_node_from_given_position(head, position)
         try:
-            self.assertEqual(20, output.value, "begining: head should be 20")
-            self.assertEqual(30, output.next.value, "begining: pos 2 should be 30")
-        except:
+            self.assertEqual(20, output.value, "beginning: head should be 20")
+            self.assertEqual(30, output.next.value, "beginning: pos 2 should be 30")
+        except Exception as e:
+            traceback.print_exception(e)
             self.assertTrue(False, "not expected!")
 
     def test_end(self):
@@ -95,5 +99,6 @@ class Testcase(unittest.TestCase):
             self.assertEqual(10, output.value, "end: head should be 20")
             self.assertEqual(40, output.next.next.next.value, "end: pos 4 should be 40")
             self.assertEqual(None, output.next.next.next.next, "end: pos 5 should be None")
-        except:
+        except Exception as e:
+            traceback.print_exception(e)
             self.assertTrue(False, "not expected!")
