@@ -23,7 +23,7 @@ def check_if_array_contains_duplicate(nums):
     #   add the elements to the set and check if already exists to return the result
 
     # Write your code here.
-    nums_set = set({})
+    nums_set = set()
     for n in nums:
         if n in nums_set:
             return True
